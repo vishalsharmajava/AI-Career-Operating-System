@@ -1,0 +1,18 @@
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: jobs
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
